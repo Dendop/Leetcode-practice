@@ -7,7 +7,9 @@ def main():
             nums[j] = nums[i]
             j += 1
     
-    print(j)     
+    nums = nums[:j]
+    print(j)  
+    print(nums)   
    
     
     
