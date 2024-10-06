@@ -87,6 +87,16 @@ def add_time(start, duration, day_opt=None):
                 return f"{total_hours}:{total_minutes:02d} AM (next day)"
             else:
                 return f"{total_hours}:{total_minutes:02d} AM ({total_days} days later)"
+            
+        #case for lunch
+        if total_hours == 12:
+            if total_days == 0:
+                return f"{total_hours}:{total_minutes:02d} PM"
+            elif total_days == 1:
+                return f"{total_hours}:{total_minutes:02d} PM (next day)"
+            else:
+                return f"{total_hours}:{total_minutes:02d} PM ({total_days} days later)"
+            
 
         # AM handle
         if total_hours < 12:
@@ -108,7 +118,7 @@ def add_time(start, duration, day_opt=None):
                 return f"{total_hours}:{total_minutes:02d} PM ({total_days} days later)"
     
 def main():
-    magic= add_time("11:59 PM", "24:05", "wednesday")
+    magic= add_time("8:00 AM", "4:00")
     print(magic)
     
     
