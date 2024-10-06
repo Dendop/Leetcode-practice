@@ -51,59 +51,64 @@ def add_time(start, duration, day_opt=None):
         #AM handle
         if total_hours < 12:
             if total_days == 1:
-                print(f"{total_hours}:{total_minutes:02d} AM, {new_day.title()} (next day)")
+                return f"{total_hours}:{total_minutes:02d} AM, {new_day.title()} (next day)"
             else:
-                print(f"{total_hours}:{total_minutes:02d} AM, {new_day.title()} ({total_days} days later)")
+                return f"{total_hours}:{total_minutes:02d} AM, {new_day.title()} ({total_days} days later)"
         
     
         #Midnight handle
         elif total_hours == 0:
             total_hours = 12
             if total_days == 1:
-                print(f"{total_hours}:{total_minutes:02d} AM, {new_day.title()} (next day)")
+                return f"{total_hours}:{total_minutes:02d} AM, {new_day.title()} (next day)"
             else:
-                print(f"{total_hours}:{total_minutes:02d} AM, {new_day.title()} ({total_days} days later)")
+                return f"{total_hours}:{total_minutes:02d} AM, {new_day.title()} ({total_days} days later)"
+            
         #PM handle   
         else:
             total_hours -= 12
             if total_days == 1:
-                print(f"{total_hours}:{total_minutes:02d} PM, {new_day.title()} (next day)")
+                return f"{total_hours}:{total_minutes:02d} PM, {new_day.title()} (next day)"
             else:
-                print(f"{total_hours}:{total_minutes:02d} PM, {new_day.title()} ({total_days} days later)")
+                return f"{total_hours}:{total_minutes:02d} PM, {new_day.title()} ({total_days} days later)"
     
     else:
-        # AM handle without optional parameter
-        if total_hours < 12:
-            if total_days == 0:
-                print(f"{total_hours}:{total_minutes:02d} AM")
-            elif total_days == 1:
-                print(f"{total_hours}:{total_minutes:02d} AM, (next day)")
-            else:
-                print(f"{total_hours}:{total_minutes:02d} AM ({total_days} days later)")
-    
-    # Midnight handle
+        
+        # Midnight handle
         if total_hours == 0:
             total_hours = 12
             if total_days == 0:
-                print(f"{total_hours}:{total_minutes:02d} AM")
+                return f"{total_hours}:{total_minutes:02d} AM"
             elif total_days == 1:
-                print(f"{total_hours}:{total_minutes:02d} AM (next day)")
+                return f"{total_hours}:{total_minutes:02d} AM (next day)"
             else:
-                print(f"{total_hours}:{total_minutes:02d} AM ({total_days} days later)")
+                return f"{total_hours}:{total_minutes:02d} AM ({total_days} days later)"
+
+        # AM handle
+        if total_hours < 12:
+            if total_days == 0:
+                return f"{total_hours}:{total_minutes:02d} AM"
+            elif total_days == 1:
+                return f"{total_hours}:{total_minutes:02d} AM (next day)"
+            else:
+                return f"{total_hours}:{total_minutes:02d} AM ({total_days} days later)"
     
     # PM handle
         if total_hours > 12:
             
             if total_days == 0:
-                print(f"{total_hours}:{total_minutes:02d} PM")
+                return f"{total_hours}:{total_minutes:02d} PM"
             elif total_days == 1:
-                print(f"{total_hours}:{total_minutes:02d} PM (next day)")
+                return f"{total_hours}:{total_minutes:02d} PM (next day)"
             else:
-                print(f"{total_hours}:{total_minutes:02d} PM ({total_days} days later)")
+                return f"{total_hours}:{total_minutes:02d} PM ({total_days} days later)"
     
 def main():
-    add_time("8:16 PM", "466:02", "tUeSdAy")
-    
+    magic = add_time("11:59 PM", "24:05")
+    print(magic)
     
 if __name__ == "__main__":
     main()
+    
+    
+   
