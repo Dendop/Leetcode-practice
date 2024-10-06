@@ -48,18 +48,20 @@ def add_time(start, duration, day_opt=None):
         new_day_index = (week.index(day_style) + total_days) % 7
         new_day = week[new_day_index]
         
-        #AM handle
-        if total_hours < 12:
-            if total_days == 1:
+        if total_hours == 0:
+            total_hours = 12
+            if total_days == 0:
+                return f"{total_hours}:{total_minutes:02d} AM, {new_day.title()}"
+            elif total_days == 1:
                 return f"{total_hours}:{total_minutes:02d} AM, {new_day.title()} (next day)"
             else:
                 return f"{total_hours}:{total_minutes:02d} AM, {new_day.title()} ({total_days} days later)"
-        
-    
-        #Midnight handle
-        elif total_hours == 0:
-            total_hours = 12
-            if total_days == 1:
+
+        # if it's less than 12 and not 0, handle normally
+        if total_hours < 12:
+            if total_days == 0:
+                return f"{total_hours}:{total_minutes:02d} AM, {new_day.title()}"
+            elif total_days == 1:
                 return f"{total_hours}:{total_minutes:02d} AM, {new_day.title()} (next day)"
             else:
                 return f"{total_hours}:{total_minutes:02d} AM, {new_day.title()} ({total_days} days later)"
@@ -67,7 +69,9 @@ def add_time(start, duration, day_opt=None):
         #PM handle   
         else:
             total_hours -= 12
-            if total_days == 1:
+            if total_days == 0:
+                return f"{total_hours}:{total_minutes:02d} PM, {new_day.title()}"
+            elif total_days == 1:
                 return f"{total_hours}:{total_minutes:02d} PM, {new_day.title()} (next day)"
             else:
                 return f"{total_hours}:{total_minutes:02d} PM, {new_day.title()} ({total_days} days later)"
@@ -95,7 +99,7 @@ def add_time(start, duration, day_opt=None):
     
     # PM handle
         if total_hours > 12:
-            
+            total_hours -= 12
             if total_days == 0:
                 return f"{total_hours}:{total_minutes:02d} PM"
             elif total_days == 1:
@@ -104,8 +108,9 @@ def add_time(start, duration, day_opt=None):
                 return f"{total_hours}:{total_minutes:02d} PM ({total_days} days later)"
     
 def main():
-    magic = add_time("11:59 PM", "24:05")
+    magic= add_time("11:59 PM", "24:05", "wednesday")
     print(magic)
+    
     
 if __name__ == "__main__":
     main()
