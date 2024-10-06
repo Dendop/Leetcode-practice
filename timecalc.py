@@ -93,7 +93,7 @@ def add_time(start, duration, day_opt=None):
     
     # PM handle
         if total_hours > 12:
-            total_hours -= 12
+            
             if total_days == 0:
                 print(f"{total_hours}:{total_minutes:02d} PM")
             elif total_days == 1:
