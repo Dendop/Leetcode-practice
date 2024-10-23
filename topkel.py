@@ -1,5 +1,5 @@
 def main():
-    nums = [1, 2, 2, 3, 3, 3]
+    nums = [1, 2]
     k = 2
     my_dict = {}
     
@@ -10,14 +10,13 @@ def main():
             
         
     new_list = list(my_dict.values())
-    #print(new_list)
+    print(new_list)
     
     result =[]
-    
+    test = []
     for sub in new_list:
         if len(sub) >= k:
             result.append(sub[0])
-            
         
     print(result)
     
