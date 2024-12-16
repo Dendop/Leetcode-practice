@@ -45,8 +45,8 @@ def print_list(node):
     print("None")
     
 def main():
-    list_1 = create_linked_list([1, 3, 5])
-    list_2 = create_linked_list([2, 4, 7])
+    list_1 = create_linked_list([1, 3, 7])
+    list_2 = create_linked_list([2, 4, 9])
     
     solution = Solution()
     merge = solution.mergeTwoLists(list_1, list_2)

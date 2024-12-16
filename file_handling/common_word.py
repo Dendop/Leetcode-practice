@@ -24,7 +24,8 @@ def find_most_common_words(user_input, n):
 
 def main():
     magic = find_most_common_words("donald_speech.txt", 5)
-    print(magic)
+    for word, count in magic:
+        print(f"({word}, {count})")
 
 
 
