@@ -24,7 +24,7 @@ def load_inputs(first_input, second_input):
     
     return text1, text2
 
-def find_similarities(text_one, text_two):
+def convert_to_list(text_one, text_two):
     similarities_list1 = []
     similarities_list2 = []
     words_1 = text_one.split()
@@ -33,15 +33,23 @@ def find_similarities(text_one, text_two):
     similarities_list2.extend(words_2)#add text into list
     
     return similarities_list1, similarities_list2
-    
+
+def compare_and_find(filepath, input_1, input_2):
+    pass
+
+
+
 def main():
     #load the file or texts
     speech1, speech2 = load_inputs("michelle_obama_speech.txt", "melina_trump_speech.txt")
     
     
-    #compare, find similarities
-    list1, list2 = find_similarities(speech1, speech2)
+    #convert to lists
+    list1, list2 = convert_to_list(speech1, speech2)
     
+    
+    #open stop words, and list1, list2    
+    magic = compare_and_find("stop_words.py", list1, list2)
 
 if __name__ == "__main__":
     main()
