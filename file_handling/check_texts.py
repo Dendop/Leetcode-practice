@@ -35,10 +35,21 @@ def convert_to_list(text_one, text_two):
     return similarities_list1, similarities_list2
 
 def compare_and_find(filepath, input_1, input_2):
-    pass
-
-
-
+    try:
+        from stop_words import stop_words
+                      
+    except ImportError:
+        raise TypeError("File 'stop_words.py' has not been found")
+    #spot words string into list
+    
+    
+    filtered_speech1 = [word for word in input_1 if word not in stop_words]
+    filtered_speech2 = [word for word in input_2 if word not in stop_words]
+    
+    
+    return filtered_speech1, filtered_speech2
+    #last touch to find similarities in filtered speech1 and 2
+    
 def main():
     #load the file or texts
     speech1, speech2 = load_inputs("michelle_obama_speech.txt", "melina_trump_speech.txt")
@@ -49,7 +60,11 @@ def main():
     
     
     #open stop words, and list1, list2    
-    magic = compare_and_find("stop_words.py", list1, list2)
+    magic_1, magic_2 = compare_and_find("stop_words.py", list1, list2)
+    
+    print(len(list2))
+    print(len(magic_2))
+    
 
 if __name__ == "__main__":
     main()
