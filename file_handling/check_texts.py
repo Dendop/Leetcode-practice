@@ -47,8 +47,16 @@ def compare_and_find(filepath, input_1, input_2):
     filtered_speech2 = [word for word in input_2 if word not in stop_words]
     
     
-    return filtered_speech1, filtered_speech2
+    #return filtered_speech1, filtered_speech2
     #last touch to find similarities in filtered speech1 and 2
+    similar_list = []
+
+    for word in filtered_speech1:
+        if word in filtered_speech2:
+            similar_list.append(word)
+
+    return similar_list
+
     
 def main():
     #load the file or texts
@@ -60,10 +68,9 @@ def main():
     
     
     #open stop words, and list1, list2    
-    magic_1, magic_2 = compare_and_find("stop_words.py", list1, list2)
+    magic = compare_and_find("stop_words.py", list1, list2)
     
-    print(len(list2))
-    print(len(magic_2))
+    print(magic)
     
 
 if __name__ == "__main__":
