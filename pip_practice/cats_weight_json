@@ -1,0 +1,404 @@
+{
+  "Abyssinian": {
+    "min": 3.0,
+    "max": 5.0,
+    "mean": 4.0,
+    "median": 4.0
+  },
+  "Aegean": {
+    "min": 3.0,
+    "max": 5.0,
+    "mean": 4.0,
+    "median": 4.0
+  },
+  "American Bobtail": {
+    "min": 3.0,
+    "max": 7.0,
+    "mean": 5.0,
+    "median": 5.0
+  },
+  "American Curl": {
+    "min": 2.0,
+    "max": 5.0,
+    "mean": 3.5,
+    "median": 3.5
+  },
+  "American Shorthair": {
+    "min": 4.0,
+    "max": 7.0,
+    "mean": 5.5,
+    "median": 5.5
+  },
+  "American Wirehair": {
+    "min": 4.0,
+    "max": 7.0,
+    "mean": 5.5,
+    "median": 5.5
+  },
+  "Arabian Mau": {
+    "min": 4.0,
+    "max": 7.0,
+    "mean": 5.5,
+    "median": 5.5
+  },
+  "Australian Mist": {
+    "min": 3.0,
+    "max": 7.0,
+    "mean": 5.0,
+    "median": 5.0
+  },
+  "Balinese": {
+    "min": 2.0,
+    "max": 5.0,
+    "mean": 3.5,
+    "median": 3.5
+  },
+  "Bambino": {
+    "min": 2.0,
+    "max": 4.0,
+    "mean": 3.0,
+    "median": 3.0
+  },
+  "Bengal": {
+    "min": 3.0,
+    "max": 7.0,
+    "mean": 5.0,
+    "median": 5.0
+  },
+  "Birman": {
+    "min": 3.0,
+    "max": 7.0,
+    "mean": 5.0,
+    "median": 5.0
+  },
+  "Bombay": {
+    "min": 3.0,
+    "max": 5.0,
+    "mean": 4.0,
+    "median": 4.0
+  },
+  "British Longhair": {
+    "min": 4.0,
+    "max": 8.0,
+    "mean": 6.0,
+    "median": 6.0
+  },
+  "British Shorthair": {
+    "min": 5.0,
+    "max": 9.0,
+    "mean": 7.0,
+    "median": 7.0
+  },
+  "Burmese": {
+    "min": 3.0,
+    "max": 5.0,
+    "mean": 4.0,
+    "median": 4.0
+  },
+  "Burmilla": {
+    "min": 3.0,
+    "max": 6.0,
+    "mean": 4.5,
+    "median": 4.5
+  },
+  "California Spangled": {
+    "min": 5.0,
+    "max": 7.0,
+    "mean": 6.0,
+    "median": 6.0
+  },
+  "Chantilly-Tiffany": {
+    "min": 3.0,
+    "max": 5.0,
+    "mean": 4.0,
+    "median": 4.0
+  },
+  "Chartreux": {
+    "min": 3.0,
+    "max": 7.0,
+    "mean": 5.0,
+    "median": 5.0
+  },
+  "Chausie": {
+    "min": 3.0,
+    "max": 7.0,
+    "mean": 5.0,
+    "median": 5.0
+  },
+  "Cheetoh": {
+    "min": 4.0,
+    "max": 7.0,
+    "mean": 5.5,
+    "median": 5.5
+  },
+  "Colorpoint Shorthair": {
+    "min": 2.0,
+    "max": 5.0,
+    "mean": 3.5,
+    "median": 3.5
+  },
+  "Cornish Rex": {
+    "min": 2.0,
+    "max": 4.0,
+    "mean": 3.0,
+    "median": 3.0
+  },
+  "Cymric": {
+    "min": 4.0,
+    "max": 6.0,
+    "mean": 5.0,
+    "median": 5.0
+  },
+  "Cyprus": {
+    "min": 4.0,
+    "max": 7.0,
+    "mean": 5.5,
+    "median": 5.5
+  },
+  "Devon Rex": {
+    "min": 2.0,
+    "max": 5.0,
+    "mean": 3.5,
+    "median": 3.5
+  },
+  "Donskoy": {
+    "min": 5.0,
+    "max": 6.0,
+    "mean": 5.5,
+    "median": 5.5
+  },
+  "Dragon Li": {
+    "min": 4.0,
+    "max": 6.0,
+    "mean": 5.0,
+    "median": 5.0
+  },
+  "Egyptian Mau": {
+    "min": 3.0,
+    "max": 6.0,
+    "mean": 4.5,
+    "median": 4.5
+  },
+  "European Burmese": {
+    "min": 3.0,
+    "max": 6.0,
+    "mean": 4.5,
+    "median": 4.5
+  },
+  "Exotic Shorthair": {
+    "min": 3.0,
+    "max": 6.0,
+    "mean": 4.5,
+    "median": 4.5
+  },
+  "Havana Brown": {
+    "min": 3.0,
+    "max": 5.0,
+    "mean": 4.0,
+    "median": 4.0
+  },
+  "Himalayan": {
+    "min": 3.0,
+    "max": 6.0,
+    "mean": 4.5,
+    "median": 4.5
+  },
+  "Japanese Bobtail": {
+    "min": 2.0,
+    "max": 5.0,
+    "mean": 3.5,
+    "median": 3.5
+  },
+  "Javanese": {
+    "min": 2.0,
+    "max": 5.0,
+    "mean": 3.5,
+    "median": 3.5
+  },
+  "Khao Manee": {
+    "min": 4.0,
+    "max": 6.0,
+    "mean": 5.0,
+    "median": 5.0
+  },
+  "Korat": {
+    "min": 3.0,
+    "max": 5.0,
+    "mean": 4.0,
+    "median": 4.0
+  },
+  "Kurilian": {
+    "min": 4.0,
+    "max": 7.0,
+    "mean": 5.5,
+    "median": 5.5
+  },
+  "LaPerm": {
+    "min": 3.0,
+    "max": 5.0,
+    "mean": 4.0,
+    "median": 4.0
+  },
+  "Maine Coon": {
+    "min": 5.0,
+    "max": 8.0,
+    "mean": 6.5,
+    "median": 6.5
+  },
+  "Malayan": {
+    "min": 3.0,
+    "max": 6.0,
+    "mean": 4.5,
+    "median": 4.5
+  },
+  "Manx": {
+    "min": 3.0,
+    "max": 6.0,
+    "mean": 4.5,
+    "median": 4.5
+  },
+  "Munchkin": {
+    "min": 2.0,
+    "max": 4.0,
+    "mean": 3.0,
+    "median": 3.0
+  },
+  "Nebelung": {
+    "min": 3.0,
+    "max": 5.0,
+    "mean": 4.0,
+    "median": 4.0
+  },
+  "Norwegian Forest Cat": {
+    "min": 4.0,
+    "max": 7.0,
+    "mean": 5.5,
+    "median": 5.5
+  },
+  "Ocicat": {
+    "min": 3.0,
+    "max": 7.0,
+    "mean": 5.0,
+    "median": 5.0
+  },
+  "Oriental": {
+    "min": 2.0,
+    "max": 5.0,
+    "mean": 3.5,
+    "median": 3.5
+  },
+  "Persian": {
+    "min": 4.0,
+    "max": 6.0,
+    "mean": 5.0,
+    "median": 5.0
+  },
+  "Pixie-bob": {
+    "min": 4.0,
+    "max": 8.0,
+    "mean": 6.0,
+    "median": 6.0
+  },
+  "Ragamuffin": {
+    "min": 4.0,
+    "max": 9.0,
+    "mean": 6.5,
+    "median": 6.5
+  },
+  "Ragdoll": {
+    "min": 5.0,
+    "max": 9.0,
+    "mean": 7.0,
+    "median": 7.0
+  },
+  "Russian Blue": {
+    "min": 2.0,
+    "max": 5.0,
+    "mean": 3.5,
+    "median": 3.5
+  },
+  "Savannah": {
+    "min": 4.0,
+    "max": 11.0,
+    "mean": 7.5,
+    "median": 7.5
+  },
+  "Scottish Fold": {
+    "min": 2.0,
+    "max": 5.0,
+    "mean": 3.5,
+    "median": 3.5
+  },
+  "Selkirk Rex": {
+    "min": 3.0,
+    "max": 7.0,
+    "mean": 5.0,
+    "median": 5.0
+  },
+  "Siamese": {
+    "min": 4.0,
+    "max": 7.0,
+    "mean": 5.5,
+    "median": 5.5
+  },
+  "Siberian": {
+    "min": 4.0,
+    "max": 7.0,
+    "mean": 5.5,
+    "median": 5.5
+  },
+  "Singapura": {
+    "min": 2.0,
+    "max": 4.0,
+    "mean": 3.0,
+    "median": 3.0
+  },
+  "Snowshoe": {
+    "min": 3.0,
+    "max": 5.0,
+    "mean": 4.0,
+    "median": 4.0
+  },
+  "Somali": {
+    "min": 3.0,
+    "max": 5.0,
+    "mean": 4.0,
+    "median": 4.0
+  },
+  "Sphynx": {
+    "min": 3.0,
+    "max": 5.0,
+    "mean": 4.0,
+    "median": 4.0
+  },
+  "Tonkinese": {
+    "min": 3.0,
+    "max": 5.0,
+    "mean": 4.0,
+    "median": 4.0
+  },
+  "Toyger": {
+    "min": 3.0,
+    "max": 7.0,
+    "mean": 5.0,
+    "median": 5.0
+  },
+  "Turkish Angora": {
+    "min": 2.0,
+    "max": 5.0,
+    "mean": 3.5,
+    "median": 3.5
+  },
+  "Turkish Van": {
+    "min": 3.0,
+    "max": 9.0,
+    "mean": 6.0,
+    "median": 6.0
+  },
+  "York Chocolate": {
+    "min": 5.0,
+    "max": 8.0,
+    "mean": 6.5,
+    "median": 6.5
+  }
+}
