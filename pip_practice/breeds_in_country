@@ -1,0 +1,109 @@
+{
+  "Egypt": [
+    "Abyssinian",
+    "Chausie",
+    "Egyptian Mau"
+  ],
+  "Greece": [
+    "Aegean"
+  ],
+  "United States": [
+    "American Bobtail",
+    "American Curl",
+    "American Shorthair",
+    "American Wirehair",
+    "Balinese",
+    "Bambino",
+    "Bengal",
+    "Bombay",
+    "California Spangled",
+    "Chantilly-Tiffany",
+    "Cheetoh",
+    "Colorpoint Shorthair",
+    "Exotic Shorthair",
+    "Himalayan",
+    "Javanese",
+    "Maine Coon",
+    "Munchkin",
+    "Nebelung",
+    "Ocicat",
+    "Oriental",
+    "Pixie-bob",
+    "Ragamuffin",
+    "Ragdoll",
+    "Savannah",
+    "Selkirk Rex",
+    "Snowshoe",
+    "Toyger",
+    "York Chocolate"
+  ],
+  "United Arab Emirates": [
+    "Arabian Mau"
+  ],
+  "Australia": [
+    "Australian Mist"
+  ],
+  "France": [
+    "Birman",
+    "Chartreux"
+  ],
+  "United Kingdom": [
+    "British Longhair",
+    "British Shorthair",
+    "Burmilla",
+    "Cornish Rex",
+    "Devon Rex",
+    "Havana Brown",
+    "Malayan",
+    "Scottish Fold"
+  ],
+  "Burma": [
+    "Burmese",
+    "European Burmese"
+  ],
+  "Canada": [
+    "Cymric",
+    "Sphynx",
+    "Tonkinese"
+  ],
+  "Cyprus": [
+    "Cyprus"
+  ],
+  "Russia": [
+    "Donskoy",
+    "Kurilian",
+    "Russian Blue",
+    "Siberian"
+  ],
+  "China": [
+    "Dragon Li"
+  ],
+  "Japan": [
+    "Japanese Bobtail"
+  ],
+  "Thailand": [
+    "Khao Manee",
+    "Korat",
+    "LaPerm",
+    "Siamese"
+  ],
+  "Isle of Man": [
+    "Manx"
+  ],
+  "Norway": [
+    "Norwegian Forest Cat"
+  ],
+  "Iran (Persia)": [
+    "Persian"
+  ],
+  "Singapore": [
+    "Singapura"
+  ],
+  "Somalia": [
+    "Somali"
+  ],
+  "Turkey": [
+    "Turkish Angora",
+    "Turkish Van"
+  ]
+}
