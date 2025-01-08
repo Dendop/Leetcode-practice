@@ -18,6 +18,9 @@ def main():
         all_languages.extend(language.values())
     magic = Counter(all_languages)
     print(magic.most_common(10))
+    print(f"Total number of all languages = {len(all_languages)}")
+    no_dup = set(all_languages) #total number without duplicates
+    print(f"Total number of languages = {len(no_dup)}")
 
 if __name__ == "__main__":
     main()
