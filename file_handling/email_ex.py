@@ -13,7 +13,8 @@ def main():
             email_list.extend(emails)
               
     print(email_list)
-    
+    how_many = len(email_list)
+    print(how_many)
                 
             
     
