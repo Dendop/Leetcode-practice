@@ -6,7 +6,7 @@ def main():
     url = "http://olympus.realpython.org/login"
 
     page = browser.get(url)
-    print(page.soup)
+    
 
 if __name__ == "__main__":
     main()

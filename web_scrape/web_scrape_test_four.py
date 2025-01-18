@@ -20,7 +20,7 @@ def main():
     for link in links:
         address = base_url + link["href"]
         text = link.text
-        print(f"{text}:{address}")
+        print(f"{text}: {address}")
     
 if __name__ == "__main__":
     main()
