@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: sans-serif;
+    font-size: 20px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  a,
+  a:visited {
+    color: #007bff;
+  }
+  
+  a:hover {
+    color: #0056b3;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin: 0 5px;
+  }
+  
+  main {
+    width: 80%;
+    margin: 0 auto;
+  }
+  /* Style the textarea */
+textarea {
+  width: 100%; /* Make it take full width of the form */
+  max-width: 500px; /* Set a max width */
+  height: 150px; /* Adjust height */
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  resize: vertical; /* Allow resizing only vertically */
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+}
+
+/* Add focus effect */
+textarea:focus {
+  border-color: #007bff; /* Change border color when focused */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+/* Center the form */
+form {
+  max-width: 400px; /* Limit width */
+  margin: 50px auto; /* Center the form horizontally */
+  padding: 20px;
+  background: #f9f9f9; /* Light background */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  gap: 15px; /* Add spacing between elements */
+}
+
+/* Style labels */
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Style inputs and textarea */
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+}
+
+/* Add hover and focus effects */
+input:focus, textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Style the submit button */
+button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
