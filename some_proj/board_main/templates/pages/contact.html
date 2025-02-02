@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+    <h2>{% block title %}Contact{% endblock title %}</h2>
+{% endblock header %}
+
+
+{% block content %}
+    <form>
+        <label for="first_name">First name</label>
+        <input type="text" id="first_name" name="first_name" placeholder="Enter your first name">
+
+        <label for="surname">Surname</label>
+        <input type="text" id="surname" name="surname" placeholder="Enter your surname">
+
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" placeholder="Enter your email">
+
+        <label for="message">Your message</label>
+        <textarea id="message" name="message" rows="4" cols="50" placeholder="Enter your message here..."></textarea>
+
+        <button type="submit">Submit</button>
+
+    </form>
+{% endblock content %}
