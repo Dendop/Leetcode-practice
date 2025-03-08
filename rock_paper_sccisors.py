@@ -19,7 +19,7 @@ def main():
     opponent = random.choice(['r','p','s'])
     result = play(player, opponent)
     print(result)
-    print(f"Double check {opponent}")
+    print(f"Double check :{opponent}")
 
 
 if __name__ == "__main__":
