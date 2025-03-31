@@ -13,9 +13,10 @@ class Category:
         
     
     def withdraw(self, ammount, description = ""):
-        if self.total < 0:
-            return False
         self.ammount = ammount
+        if ammount > self.total:
+            return False   
+        
         self.total -= ammount
         self.description = description
         self.ledger.append({"ammount": -ammount, "description": description})
@@ -33,7 +34,8 @@ def main():
     food.deposit(500, 'deposit')
     food.withdraw(100, "babanas")
     clothing = Category("Clothing")
-    clothing.withdraw(150, 'new t-shirt')
+    clothing.deposit(350, 'deposit')
+    clothing.withdraw(350, 'new t-shirt')
     print(food)
     print(clothing)
 
