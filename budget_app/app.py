@@ -5,34 +5,34 @@ class Category:
         self.ledger = []
         
     #categories do not share deposit
-    def deposit(self,ammount,description = ""):
-        self.ammount = ammount
-        self.total += ammount
-        self.description = description
-        self.ledger.append({"ammount": float(f"{ammount:.2f}"), "description":description})
+    def deposit(self,amount,description = ""):
+        self.total += amount
+        self.ledger.append({"amount": float(f"{amount:.2f}"), "description":description})
         
     
-    def withdraw(self, ammount, description = ""):
-        self.ammount = ammount
-        if ammount > self.total:
+    def withdraw(self, amount, description = ""):
+        if amount > self.total:
             return False   
-        self.total -= ammount
-        self.description = description
-        self.ledger.append({"ammount": -ammount, "description": description})
+        self.total -= amount
+        self.ledger.append({"amount": -amount, "description": description})
         return True
     
     def get_balance(self):
         print(f"Current Balance of {self.cat_name} : {self.total:.2f}")
         
-    def transfer(self, ammount, category):
-        
-        self.ammount = ammount
-        if ammount > self.total:
+    def transfer(self, amount, category):
+        if amount > self.total:
             return False
-        self.total -= ammount
-        self.ledger.append({"ammount": -ammount, "Transfer to": category.cat_name})
-        category.ledger.append({"ammount": ammount, "Transfered from:": category.cat_name})
-        category.total += ammount
+        self.total -= amount
+        self.ledger.append({"amount": -amount, "Transfer to": category.cat_name})
+        category.ledger.append({"amount": amount, "Transfered from:": self.cat_name})
+        category.total += amount
+        return True
+    
+    def check_funds(self, amount):
+        
+        if amount > self.total:
+            return False
         return True
     
     def __str__(self):
@@ -47,16 +47,15 @@ def create_spend_chart(categories):
 
 def main():
     food = Category("Food")
-    food.deposit(500, 'deposit')
-    food.withdraw(100, "babanas")
+    food.deposit(900,'deposit')
+    food.withdraw(45.67, 'milk,cereak,eggs,bacon,bread')
     clothing = Category("Clothing")
     clothing.deposit(400, 'deposit')
     clothing.withdraw(350, 'new t-shirt')
-    food.transfer(400,clothing)
+    food.transfer(300,clothing)
     print(food)
-    print(clothing)
-
-
+    
+    
 
 
 
