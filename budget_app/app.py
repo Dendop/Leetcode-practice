@@ -24,8 +24,16 @@ class Category:
     def get_balance(self):
         print(f"Current Balance of {self.cat_name} : {self.total:.2f}")
         
-    def transfer(self, ammount, add_to):
+    def transfer(self, ammount, category):
+        
         self.ammount = ammount
+        if ammount > self.total:
+            return False
+        self.total -= ammount
+        self.ledger.append({"ammount": -ammount, "Transfer to": category.cat_name})
+        category.ledger.append({"ammount": ammount, "Transfered from:": category.cat_name})
+        category.total += ammount
+        return True
     
     def __str__(self):
         #Title 30 characters * each, title centered in middle
@@ -44,9 +52,9 @@ def main():
     clothing = Category("Clothing")
     clothing.deposit(400, 'deposit')
     clothing.withdraw(350, 'new t-shirt')
+    food.transfer(400,clothing)
     print(food)
     print(clothing)
-    
 
 
 
