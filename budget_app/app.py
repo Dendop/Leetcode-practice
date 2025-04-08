@@ -7,7 +7,7 @@ class Category:
     #categories do not share deposit
     def deposit(self,amount,description = ""):
         self.total += amount
-        self.ledger.append({"amount": float(f"{amount:.2f}"), "description":description})
+        self.ledger.append({"amount": amount, "description":description})
         
     
     def withdraw(self, amount, description = ""):
@@ -18,32 +18,34 @@ class Category:
         return True
     
     def get_balance(self):
-        print(f"Current Balance of {self.cat_name} : {self.total:.2f}")
+        return self.total
         
     def transfer(self, amount, category):
-        if amount > self.total:
-            return False
-        self.total -= amount
-        self.ledger.append({"amount": -amount, "Transfer to": category.cat_name})
-        category.ledger.append({"amount": amount, "Transfered from:": self.cat_name})
-        category.total += amount
-        return True
-    
-    def check_funds(self, amount):
+        if self.check_funds(amount):
+            self.withdraw(amount, f"Transfer to {category.cat_name}") #if amount < total then -amount
+            category.deposit(amount, f"Transfer from {self.cat_name}")
+            return True
+        return False
+
         
+        
+    def check_funds(self, amount):
         if amount > self.total:
             return False
         return True
     
     def __str__(self):
-        #Title 30 characters * each, title centered in middle
-        #rest 23 chars for description, 7 chars for int decimal(7,2)
-        #some_string = ""
-        #for i in self.ledger:
-        return f"{self.cat_name}\n{self.ledger}\n{self.total:.2f}"
+        title = f"{self.cat_name:*^30}\n" #centered to middle, 30 characters filled with *
+        items = ""
+        for entry in self.ledger:
+            desc = entry["description"][:23]
+            amnt = f"{entry['amount']:>7.2f}"
+            items += f"{desc:23}{amnt}\n"
+        total_line = f"Total: {self.total:.2f}"
+        return title + items + total_line
     
 def create_spend_chart(categories):
-    pass
+    title = "Percentage spent by category"
 
 def main():
     food = Category("Food")
@@ -52,7 +54,7 @@ def main():
     clothing = Category("Clothing")
     clothing.deposit(400, 'deposit')
     clothing.withdraw(350, 'new t-shirt')
-    food.transfer(300,clothing)
+    food.transfer(50,clothing)
     print(food)
     
     
