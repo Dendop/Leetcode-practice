@@ -1,0 +1,8 @@
+secrets.ini
+
+# Ignore environment-specific files
+.env
+.venv
+env/
+venv/
+ENV/
