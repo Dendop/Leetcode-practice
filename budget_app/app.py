@@ -67,7 +67,7 @@ def create_spend_chart(categories):
         line = f"{i:>3}|" #3 characters aligned to right
         for percent in percentage:
             line += " o " if percent >= i else "   " #if percent is equal or higher then o else empty string
-        line += "  "
+        line += " "
         chart += line + "\n"
 
     chart += "    " + "-" * (3 * len(categories) + 1) + "\n"
