@@ -5,6 +5,7 @@
     
     <form method="POST" action="{{ url_for('login') }}">
         {{ form.hidden_tag() }}
+        
         <p class="login-username">
             {{ form.username.label }}
             {{ form.username(size=32) }}
@@ -16,6 +17,17 @@
         <p class="login-submit">
             {{ form.submit }}
         </p><br>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                    
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
         <p class="link-register">New user?Click<a href="{{ url_for('register') }}">here</a></p>
     </form>
 

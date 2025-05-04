@@ -29,17 +29,28 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        flash("You are already logged-in")
-        return redirect(url_for('dashboard'))
+        flash("You are already logged in.")
+        return redirect(url_for('dashboard'))  
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        sleep(1)
-        if user is None or not user.check_password(form.password.data):
-            flash("Invalid username or password")
-            return redirect(url_for('login'))
-        login_user(user, remember=form.remember.data)
-        next_page = request.args.get('next')
-        return redirect( next_page or url_for('dashboard'))
-    return render_template('login.html', title='Sign-In', form=form)
+        if user and user.check_password(form.password.data):
+            login_user(user, remember=form.remember.data)
+            next_page = request.args.get('next')
+            return redirect(next_page or url_for('dashboard'))
+        flash("Invalid username or password.")
+        return redirect(url_for('login'))
+    return render_template('login.html', form=form)
+
+
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    return render_template('dashboard.html', user=current_user)
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
         
