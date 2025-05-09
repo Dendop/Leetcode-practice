@@ -9,10 +9,10 @@ import os
 from dotenv import load_dotenv
 import time
 from . import model
-from .database import engine, SessionLocal
-from sqlalchemy import Session
+from .database import engine, get_db
+from sqlalchemy.orm import Session
 
-model.Base.metadata.create_all(bind=engine)
+model.Base.metadata.create_all(bind=engine) #initializing db
 
 
 load_dotenv()
@@ -23,12 +23,7 @@ db_name = os.getenv('DB_NAME')
 db_user = os.getenv('DB_USER')
 db_password = os.getenv('DB_PASSWORD')
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+
         
 class Post(BaseModel):
     title: str
@@ -51,6 +46,10 @@ while True:   #keeps trying to connect into db until succesfull
     except Exception as e:
         print("Error", e)
         time.sleep(3)
+        
+@app.get('/sqlalchemy')
+def test_post(db: Session = Depends(get_db)):
+    return {"status": "success"}
 
 @app.get('/')
 def root():
