@@ -11,6 +11,7 @@ import time
 from . import model
 from .database import engine, get_db
 from sqlalchemy.orm import Session
+from sqlalchemy import text
 
 model.Base.metadata.create_all(bind=engine) #initializing db
 
@@ -25,11 +26,11 @@ db_password = os.getenv('DB_PASSWORD')
 
 
         
-class Post(BaseModel):
+class Post(BaseModel): #pydantic method for validating REQUEST
     title: str
     content: str
     published: bool = True #set a default value as True, optional
-    rating: Optional[int] = None
+    
     
 while True:   #keeps trying to connect into db until succesfull
     try:
@@ -65,20 +66,27 @@ def get_posts(db: Session = Depends(get_db)):
     return {"data": posts}
 
 @app.post('/posts', status_code=status.HTTP_201_CREATED)
-def create_posts(post: Post):
-    cursor.execute("""INSERT INTO "posts" ("title","content","published")
-                      VALUES (%s, %s, %s)
-                      RETURNING * """,
-                      (post.title, post.content, post.published))
-    new_post = cursor.fetchone()
-    conn.commit()
+def create_posts(post: Post, db: Session = Depends(get_db)):
+    # cursor.execute("""INSERT INTO "posts" ("title","content","published")
+    #                   VALUES (%s, %s, %s)
+    #                   RETURNING * """,
+    #                   (post.title, post.content, post.published))
+    # new_post = cursor.fetchone()
+    # conn.commit()
+    #new_post = model.Post(title=post.title, content=post.content, published=post.published) BETTER solution to change into Python dict and unpack
+    
+    new_post = model.Post(**post.dict())
+    db.add(new_post)
+    db.commit()
+    db.refresh(new_post) # return the data to postman or browser(client)
     return {"data": new_post}
 
 @app.get('/posts/{id}')
-def get_post(id: int):
-    
-    cursor.execute(""" SELECT * FROM "posts" WHERE "id" = %s """, (id,))
-    post = cursor.fetchone()
+def get_post(id: int, db: Session = Depends(get_db)):
+    # cursor.execute(""" SELECT * FROM "posts" WHERE "id" = %s """, (id,))
+    # post = cursor.fetchone()
+    post = db.query(model.Post).filter(model.Post.id == id).first()
+  
     if not post:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"post with id:{id} was not found")
