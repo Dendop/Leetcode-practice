@@ -8,7 +8,7 @@ from psycopg2.extras import RealDictCursor
 import os
 from dotenv import load_dotenv
 import time
-from . import model
+from . import model, schema
 from .database import engine, get_db
 from sqlalchemy.orm import Session
 from sqlalchemy import text # used for raw SQL queries
@@ -26,27 +26,27 @@ db_password = os.getenv('DB_PASSWORD')
 
 
         
-class Post(BaseModel): #pydantic method for validating REQUEST
-    title: str
-    content: str
-    published: bool = True #set a default value as True, optional
+# class Post(BaseModel): #pydantic method for validating REQUEST
+#     title: str
+#     content: str
+#     published: bool = True #set a default value as True, optional
     
     
-while True:   #keeps trying to connect into db until succesfull
-    try:
-        conn = psycopg2.connect(
-            host=db_host,
-            database=db_name,
-            user=db_user,
-            password=db_password,
-            cursor_factory=RealDictCursor #this will return to me also Column name from DB if quering not just rows
-        )
-        cursor = conn.cursor()
-        print("DB connection succesfull")
-        break
-    except Exception as e:
-        print("Error", e)
-        time.sleep(3)
+# while True:   #keeps trying to connect into db until succesfull
+#     try:
+#         conn = psycopg2.connect(
+#             host=db_host,
+#             database=db_name,
+#             user=db_user,
+#             password=db_password,
+#             cursor_factory=RealDictCursor #this will return to me also Column name from DB if quering not just rows
+#         )
+#         cursor = conn.cursor()
+#         print("DB connection succesfull")
+#         break
+#     except Exception as e:
+#         print("Error", e)
+#         time.sleep(3)
         
 
 
@@ -62,7 +62,7 @@ def get_posts(db: Session = Depends(get_db)):
     return {"data": posts}
 
 @app.post('/posts', status_code=status.HTTP_201_CREATED)
-def create_posts(post: Post, db: Session = Depends(get_db)):
+def create_posts(post: schema.PostBase, db: Session = Depends(get_db)):
     # cursor.execute("""INSERT INTO "posts" ("title","content","published")
     #                   VALUES (%s, %s, %s)
     #                   RETURNING * """,
@@ -106,7 +106,7 @@ def delete_post(id: int, db: Session = Depends(get_db)):
     return {"post deleted": post }
 
 @app.put('/posts/{id}')
-def update_post(id: int, updated_post: Post, db: Session = Depends(get_db)):
+def update_post(id: int, updated_post: schema.PostBase, db: Session = Depends(get_db)):
     # cursor.execute("""UPDATE "posts" SET "title"= %s, "content"= %s, published= %s WHERE "id" = %s RETURNING *""", 
     #                (post.title, post.content, post.published, (id)))
     # updated_post = cursor.fetchone()
