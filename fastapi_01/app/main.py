@@ -47,18 +47,21 @@ while True:   #keeps trying to connect into db until succesfull
         print("Error", e)
         time.sleep(3)
         
-@app.get('/sqlalchemy')
+@app.get('/sqlalchemy')# this was tester request for Postman
 def test_post(db: Session = Depends(get_db)):
-    return {"status": "success"}
+    
+    see_posts = db.query(model.Post).all()
+    return {"check posts": see_posts}
 
 @app.get('/')
 def root():
     return {"message": "Hello, World"}
 
 @app.get('/posts')
-def get_posts():
-    cursor.execute("""SELECT * FROM "posts" WHERE "id" = 3 """)
-    posts = cursor.fetchall()
+def get_posts(db: Session = Depends(get_db)):
+    # cursor.execute("""SELECT * FROM "posts" WHERE "id" = 3 """)
+    # posts = cursor.fetchall()
+    posts = db.query(model.Post).all()
     return {"data": posts}
 
 @app.post('/posts', status_code=status.HTTP_201_CREATED)
