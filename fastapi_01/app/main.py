@@ -11,7 +11,7 @@ import time
 from . import model
 from .database import engine, get_db
 from sqlalchemy.orm import Session
-from sqlalchemy import text
+from sqlalchemy import text # used for raw SQL queries
 
 model.Base.metadata.create_all(bind=engine) #initializing db
 
@@ -93,25 +93,36 @@ def get_post(id: int, db: Session = Depends(get_db)):
     return {"post detail": post}
 
 @app.delete('/posts/{id}')
-def delete_post(id: int):
-    cursor.execute("""DELETE FROM "posts" WHERE "id" = %s RETURNING * """, (id,))
-    post = cursor.fetchone()
-    conn.commit()
+def delete_post(id: int, db: Session = Depends(get_db)):
+    # cursor.execute("""DELETE FROM "posts" WHERE "id" = %s RETURNING * """, (id,))
+    # post = cursor.fetchone()
+    # conn.commit()
+    post = db.query(model.Post).filter(model.Post.id == id).first()
     if post == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"post with id:{id} was not found")
+    db.delete(post)
+    db.refresh(post)
+    db.commit()
+    
+    
     
     return {"post deleted": post }
 
 @app.put('/posts/{id}')
-def update_post(id: int, post: Post):
-    cursor.execute("""UPDATE "posts" SET "title"= %s, "content"= %s, published= %s WHERE "id" = %s RETURNING *""", 
-                   (post.title, post.content, post.published, (id)))
-    updated_post = cursor.fetchone()
-    conn.commit()
-    if updated_post == None:
+def update_post(id: int, updated_post: Post, db: Session = Depends(get_db)):
+    # cursor.execute("""UPDATE "posts" SET "title"= %s, "content"= %s, published= %s WHERE "id" = %s RETURNING *""", 
+    #                (post.title, post.content, post.published, (id)))
+    # updated_post = cursor.fetchone()
+    # conn.commit()
+    existing_post = db.query(model.Post).filter(model.Post.id == id)
+    post = existing_post.first()
+    
+    if post == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"post with id:{id} was not found")
     
-    return {"Updated post details": updated_post}
+    existing_post.update(updated_post.dict(), synchronize_session=False)
+    db.commit()
+    return {"Updated post details": existing_post.first()}
     
