@@ -17,7 +17,7 @@ class ResponsePost(BaseModel):
     published: bool = True
     
     class Config:
-        orm_mode: True
+        from_atributes = True
         
 class UserCreate(BaseModel):
     email: EmailStr
@@ -28,4 +28,9 @@ class UserMsg(BaseModel):
     email: EmailStr
     
     class Config:
-        orm_mode = True
+        from_atributes = True
+        
+class UserLogin(BaseModel):
+    email: EmailStr
+    password : str
+    

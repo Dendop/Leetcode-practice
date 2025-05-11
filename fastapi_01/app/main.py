@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from . import model, schema, utils
 from .database import engine
-from .routers import post, user
+from .routers import post, user, authentication
 
 model.Base.metadata.create_all(bind=engine) #initializing db
 
@@ -33,6 +33,7 @@ app = FastAPI()
         
 app.include_router(post.router)
 app.include_router(user.router)
+app.include_router(authentication.router)
 
 @app.get('/')
 def root():
