@@ -3,14 +3,20 @@ from datetime import datetime, timedelta
 from . import schema
 from fastapi import status, Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='login')
+
+token_secret_key = os.getenv('SECRET_KEY_TOKEN')
 
 #secret_key
 #algorithm
 #time expiry for token
 
-SECRET_KEY = 'i1qTzuOMl8xp7Q3nAKBlQkgmVg2zj6jeFbYIItAgPXSS0YCfEfJ_q3n44zXjoBR3ACs'
+
 ALGORITHM = 'HS256'
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
@@ -19,14 +25,14 @@ def create_access_token(data: dict):
     expire = datetime.now() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     to_encode.update({"exp": expire})
     
-    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    encoded_jwt = jwt.encode(to_encode, token_secret_key, algorithm=ALGORITHM)
     
     return encoded_jwt
 
 def verify_access_token(token: str, credentials_exception):
     
     try: 
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        payload = jwt.decode(token, token_secret_key, algorithms=[ALGORITHM])
         id : str = payload.get("user_id")
         
         if not id:

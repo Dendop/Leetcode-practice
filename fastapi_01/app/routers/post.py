@@ -11,10 +11,10 @@ router = APIRouter(
 )
 
 @router.get('/', response_model=List[schema.ResponsePost])
-def get_posts(db: Session = Depends(get_db)):
+def get_posts(db: Session = Depends(get_db), limit: int = 10): #limit gives a user option to specify how many posts they want to see
     # cursor.execute("""SELECT * FROM "posts" WHERE "id" = 3 """)
     # posts = cursor.fetchall()
-    posts = db.query(model.Post).all()
+    posts = db.query(model.Post).limit(limit).all()
     return posts
 
 @router.post('/', status_code=status.HTTP_201_CREATED, response_model=schema.ResponsePost)
@@ -64,7 +64,7 @@ def delete_post(id: int, db: Session = Depends(get_db), current_user : int = Dep
     return post 
 
 @router.put('/{id}', response_model=schema.ResponsePost)
-def update_post(id: int, updated_post: schema.PostBase, db: Session = Depends(get_db), user_id: int = Depends(oauth2.get_current_user)):
+def update_post(id: int, updated_post: schema.PostBase, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
     # cursor.execute("""UPDATE "posts" SET "title"= %s, "content"= %s, published= %s WHERE "id" = %s RETURNING *""", 
     #                (post.title, post.content, post.published, (id)))
     # updated_post = cursor.fetchone()
@@ -75,6 +75,8 @@ def update_post(id: int, updated_post: schema.PostBase, db: Session = Depends(ge
     if post == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"post with id:{id} was not found")
+    if post.user_id != current_user.id:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f"Not authorized to update the post")
     
     existing_post.update(updated_post.dict(), synchronize_session=False)
     db.commit()
