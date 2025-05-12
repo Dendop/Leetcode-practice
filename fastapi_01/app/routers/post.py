@@ -18,7 +18,7 @@ def get_posts(db: Session = Depends(get_db)):
     return posts
 
 @router.post('/', status_code=status.HTTP_201_CREATED, response_model=schema.ResponsePost)
-def create_posts(post: schema.PostBase, db: Session = Depends(get_db), user_id: int = Depends(oauth2.get_current_user)):
+def create_posts(post: schema.PostBase, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
     # cursor.execute("""INSERT INTO "posts" ("title","content","published")
     #                   VALUES (%s, %s, %s)
     #                   RETURNING * """,
@@ -26,8 +26,8 @@ def create_posts(post: schema.PostBase, db: Session = Depends(get_db), user_id: 
     # new_post = cursor.fetchone()
     # conn.commit()
     #new_post = model.Post(title=post.title, content=post.content, published=post.published) BETTER solution to change into Python dict and unpack
-    print(user_id)
-    new_post = model.Post(**post.dict())
+    
+    new_post = model.Post(user_id=current_user.id, **post.dict())
     db.add(new_post)
     db.commit()
     db.refresh(new_post) # return the data to postman or browser(client)
@@ -45,15 +45,16 @@ def get_post(id: int, db: Session = Depends(get_db)):
     return post
 
 @router.delete('/{id}')
-def delete_post(id: int, db: Session = Depends(get_db), user_id : int = Depends(oauth2.get_current_user)):
-    # cursor.execute("""DELETE FROM "posts" WHERE "id" = %s RETURNING * """, (id,))
-    # post = cursor.fetchone()
-    # conn.commit()
+def delete_post(id: int, db: Session = Depends(get_db), current_user : int = Depends(oauth2.get_current_user)):
     
     post = db.query(model.Post).filter(model.Post.id == id).first()
     if post == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"post with id:{id} was not found")
+        
+    if post.user_id != current_user.id:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f"Not authorized to delete the post")
+    
     db.delete(post)
     db.refresh(post)
     db.commit()
