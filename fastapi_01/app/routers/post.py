@@ -1,4 +1,4 @@
-from .. import schema, model
+from .. import schema, model, oauth2
 from ..database import get_db
 from fastapi import FastAPI, Depends, Response, status, HTTPException, APIRouter
 from typing import List
@@ -18,7 +18,7 @@ def get_posts(db: Session = Depends(get_db)):
     return posts
 
 @router.post('/', status_code=status.HTTP_201_CREATED, response_model=schema.ResponsePost)
-def create_posts(post: schema.PostBase, db: Session = Depends(get_db)):
+def create_posts(post: schema.PostBase, db: Session = Depends(get_db), user_id: int = Depends(oauth2.get_current_user)):
     # cursor.execute("""INSERT INTO "posts" ("title","content","published")
     #                   VALUES (%s, %s, %s)
     #                   RETURNING * """,
@@ -26,7 +26,7 @@ def create_posts(post: schema.PostBase, db: Session = Depends(get_db)):
     # new_post = cursor.fetchone()
     # conn.commit()
     #new_post = model.Post(title=post.title, content=post.content, published=post.published) BETTER solution to change into Python dict and unpack
-    
+    print(user_id)
     new_post = model.Post(**post.dict())
     db.add(new_post)
     db.commit()
@@ -45,10 +45,11 @@ def get_post(id: int, db: Session = Depends(get_db)):
     return post
 
 @router.delete('/{id}')
-def delete_post(id: int, db: Session = Depends(get_db)):
+def delete_post(id: int, db: Session = Depends(get_db), user_id : int = Depends(oauth2.get_current_user)):
     # cursor.execute("""DELETE FROM "posts" WHERE "id" = %s RETURNING * """, (id,))
     # post = cursor.fetchone()
     # conn.commit()
+    
     post = db.query(model.Post).filter(model.Post.id == id).first()
     if post == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
@@ -62,7 +63,7 @@ def delete_post(id: int, db: Session = Depends(get_db)):
     return post 
 
 @router.put('/{id}', response_model=schema.ResponsePost)
-def update_post(id: int, updated_post: schema.PostBase, db: Session = Depends(get_db)):
+def update_post(id: int, updated_post: schema.PostBase, db: Session = Depends(get_db), user_id: int = Depends(oauth2.get_current_user)):
     # cursor.execute("""UPDATE "posts" SET "title"= %s, "content"= %s, published= %s WHERE "id" = %s RETURNING *""", 
     #                (post.title, post.content, post.published, (id)))
     # updated_post = cursor.fetchone()
