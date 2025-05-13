@@ -3,6 +3,7 @@ from ..database import get_db
 from fastapi import FastAPI, Depends, Response, status, HTTPException, APIRouter
 from typing import List
 from sqlalchemy.orm import Session
+from sqlalchemy import func
 
 
 router = APIRouter(
@@ -10,12 +11,15 @@ router = APIRouter(
     tags=["Posts"]
 )
 
-@router.get('/', response_model=List[schema.ResponsePost])
+@router.get('/', response_model=List[schema.PostWithVotes])
 def get_posts(db: Session = Depends(get_db), limit: int = 10): #limit gives a user option to specify how many posts they want to see
     # cursor.execute("""SELECT * FROM "posts" WHERE "id" = 3 """)
     # posts = cursor.fetchall()
     posts = db.query(model.Post).limit(limit).all()
-    return posts
+    
+    result = db.query(model.Post, func.count(model.Votes.post_id).label("votes")).join(model.Votes, model.Votes.post_id == model.Post.id).group_by(model.Post.id).all()
+    response = [{"post": row[0], "votes": row[1]} for row in result]
+    return response
 
 @router.post('/', status_code=status.HTTP_201_CREATED, response_model=schema.ResponsePost)
 def create_posts(post: schema.PostBase, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):

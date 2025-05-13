@@ -1,5 +1,6 @@
 from pydantic import BaseModel, EmailStr, conint
 from typing import Optional, Literal
+from datetime import datetime
 
 
 class PostBase(BaseModel):
@@ -12,7 +13,7 @@ class UserMsg(BaseModel):
     email: EmailStr
     
     class Config:
-        from_atributes = True
+        from_attributes = True
     
     
 class CreatePost(PostBase): #inherits attributes from PostBase
@@ -26,7 +27,7 @@ class ResponsePost(BaseModel):
     user_id: int
     
     class Config:
-        from_atributes = True
+        from_attributes = True
         
 class UserCreate(BaseModel):
     email: EmailStr
@@ -48,3 +49,17 @@ class TokenData(BaseModel):
 class Vote(BaseModel):
     post_id: int
     dir : Literal[0,1]
+    
+class PostOut(BaseModel):
+    id: int
+    title: str
+    content: str
+    published: bool
+    created_at: datetime
+    user_id : int
+    class Config:
+        from_attributes = True
+
+class PostWithVotes(BaseModel):
+    post: PostOut
+    votes: int
