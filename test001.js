@@ -1,12 +1,11 @@
-const start = performance.now()
+let number = 8
+let fill = []
+const summation = (num) => {
+    do {
+        fill.push(num);
+        num--;
+    } while(num != 0)
+    return fill.reduce((acc, val) => acc+ val,0);
+};
 
-let count = 100_000_000;
-
-while(count--){
-
-}
-
-const end = performance.now();
-
-console.log(`Javascript: Took ${(end - start) / 1000} seconds`);
-console.log(`Javascript: ${count}`)
+console.log(summation(number));

@@ -1,15 +1,10 @@
-import time
 
+def odd_or_even(arr):
+    result = sum(arr)
+    if result % 2 == 0 or result == 0:
+        return "even"
+    else:
+        return "odd"
 
-start = time.time()
-count = 100_000_000
-
-while count:
-    
-    count -= 1
- 
-print(f"Python : {count}")   
-end = time.time()
-print(f"Python: Took {end - start:.4f} seconds")
-
-
+random_list = [1023, 1, 2]
+print(odd_or_even(random_list))
