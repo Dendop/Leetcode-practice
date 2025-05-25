@@ -1,11 +1,17 @@
-let number = 8
-let fill = []
-const summation = (num) => {
-    do {
-        fill.push(num);
-        num--;
-    } while(num != 0)
-    return fill.reduce((acc, val) => acc+ val,0);
-};
-
-console.log(summation(number));
+function findNextSquare(sq) {
+  let start = 1;
+  let result;
+  while ((start * start) < sq) {
+    start++;
+  }
+  if ((start * start) > sq) {
+    return -1;
+  } else {
+        start += 1;
+        return start *  start
+    }
+  
+  
+}
+let magic = findNextSquare(121);
+console.log(magic);
