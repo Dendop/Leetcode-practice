@@ -1,10 +1,21 @@
+def square_sum(numbers):
+    #your code here
+    results = []
+    t = 0
+    for i in numbers:
+        t = i ** 2
+        results.append(t)
+    return sum(results)
 
-def odd_or_even(arr):
-    result = sum(arr)
-    if result % 2 == 0 or result == 0:
-        return "even"
-    else:
-        return "odd"
 
-random_list = [1023, 1, 2]
-print(odd_or_even(random_list))
+
+def main():
+    a_list = [3,4,0,9]
+    magic = square_sum(a_list)
+    print(magic)
+
+
+
+
+if __name__ == "__main__":
+    main()
