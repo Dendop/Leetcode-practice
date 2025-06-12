@@ -63,7 +63,7 @@ def add(task):
 @click.argument('id', type = int)
 def delete(id):
     data = jsonmanager.read_json()
-    task = next((x for x in data if x['id']), None)
+    task = next((x for x in data if x['id'] == id), None)
 
     if task:
         data.remove(task)
@@ -85,7 +85,7 @@ def update(id, task):
         if task is not None:
             item['description'] = task
             now = datetime.now()
-            item['updatedAT'] = now.strftime("%d/%m/%Y %H:%M:%S")
+            item['updatedAt'] = now.strftime("%d/%m/%Y %H:%M:%S")
         jsonmanager.write_json(data)
         print(f"Task with ID {id} has been updated")
 
